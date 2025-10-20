@@ -46,7 +46,7 @@ and the other one controls the common pins of a display.
 ![Circuit diagram (schematic)](assets/circuit_diagram_(schematic).png)
 
 
-## Miscellaneous
+## Glyphs and byte mapping
 
 Typically, outputting a glyph (a character representation) to a 7-segment display involves custom-forming a byte
 whose combination of bit states (set or cleared) corresponds to a pattern in which the segments must be turned
@@ -57,8 +57,8 @@ The **mapped bytes** (sometimes called **bit masks**) can be formed in advance a
 Although it may be perfectly acceptable, it may become troublesome if the program needs to be adapted to a circuit
 with a different wiring order between the device's outputs and the display's control pins. To simplify and automate
 the task, you may want to try [SegMap595](https://github.com/ErlingSigurdson/SegMap595) library that provides
-an extremely simple API for mapping and retrieving the necessary bytes.
+a simple API for byte mapping and retrieving the necessary bytes.
 
 ## Compatibility
 
-The library works with any MCU or similar device capable of bit-banging or SPI data transfer.
+The library works with any Arduino-compatible MCU capable of bit-banging or SPI data transfer.
