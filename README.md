@@ -34,7 +34,7 @@ In this configuration first IC (first 8 bits) can be used to
 turn display segments ON and OFF, thus causing various glyphs to be output. This byte is called "glyph byte",
 or `gbyte`. 
 
-thus it's called "glyph"
+for common anode inverted (in a sense that `cpbyte` outputs must connect common pins to the positive rail, not to the ground).
 
 
 (`cpbyte`) (`gbyte`)
