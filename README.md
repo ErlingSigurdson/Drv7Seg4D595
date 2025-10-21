@@ -9,14 +9,14 @@ integrated circuit (IC) commonly employed to drive 7-segment displays.
 
 Two daisy-chained 595s form a 16-bit shift register, which is enough for driving a 4-digit 7-segment display
 in such a way that one byte determines which display segments are currently ON and OFF and the other byte
-(4 bits out of 8) will control which digits (character positions, character cells) are currently ON and OFF.
-Thus first byte is referred to as **`gbyte`** ("glyph byte") and the other one as **`cpbyte`** ("character position byte").
+(4 bits out of 8) determines which digit (character position) is currently ON and OFF. First byte is referred to
+as **`gbyte`** ("glyph byte") and the other one as **`cpbyte`** ("character position byte"). `gbyte` and `cpbyte`
+may be shifted into a 16-bit register in any order, that is, any one of them may be either upper byte or lower byte.
 
-`gbyte` and `cpbyte` may come in any order, that is, in a 16-bit register any one of them may be either upper byte
-or lower byte.
-
-Usually via a switching device (most commonly a transistor), since 595's ability to source/sink current for a whole
-set of 7 LEDs is close to its electrical limitations. 
+Four bits of `cpbyte` which are used to switch character positions do so by connecting and disconnecting the display's
+common pin to a ground (in case a common cathode display) or to a positive rail (in case of a common anode display).
+Usually it is done via a switching device (most commonly a transistor), since 595's ability to source/sink current
+itself for a whole set of 7 LEDs is close to its electrical limitations.
 
 common cathode, common anode
 common pin
@@ -44,6 +44,8 @@ be applicable. The only premise that must be followed is that one IC is used to 
 and the other one controls the common pins of a display.
 
 ![Circuit diagram (schematic)](assets/circuit_diagram_(schematic).png)
+
+## API usage
 
 
 ## Glyphs and byte mapping
