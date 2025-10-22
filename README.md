@@ -1,23 +1,33 @@
 # Overview
 
-A single-class Arduino library for driving a multiplexed 4-digit 7-segment display using two daisy-chained 74HC595 ICs.
+**Drv7Seg4D585** is a single-class Arduino library for driving
+a multiplexed 4-digit 7-segment display using two daisy-chained 74HC595 ICs.
 
 ## Concept
 
-A typical 4-digit 7-segment display has 12 input pins, therefore driving it requires 12 individual signals:
-* 8 signals turn ON or OFF individual segments.
-* 4 signals turn ON or OFF whole digits (character positions).
+A typical 4-digit 7-segment display has 12 input pins and thus driving it requires 12 individual signals:
+* 8 signals turn ON and OFF individual segments.
+* 4 signals turn ON and OFF whole digits (character positions).
+Driving this sort of display using a microcontroller unit (MCU) commonly involves extending its digital outputs
+via an interfacing device, such as an output shift register.
 
-Driving such a display using a microcontroller unit (MCU) commonly involves extending its own digital outputs
-via an interfacing device, such as a **74HC595** IC.
+**74HC595**, sometimes simply called **595**, is a widely used 8-bit serial-in, parallel-out (SIPO) shift register
+integrated circuit (IC) commonly employed to drive 7-segment displays. Despite being a SIPO register, it also features
+an auxiliary serial output that allows for **daisy-chaining**: connecting multiple 595s in such a manner that
+the serial output of a previous IC goes to the serial input of the next one and all ICs in the chain receive the same
+clock and latch signals.
 
-74HC595, sometimes simply called **595**, is a widely used 8-bit serial-in, parallel-out (SIPO) shift register
-integrated circuit (IC) commonly employed to drive 7-segment displays. Multiple 595s can be daisy-chained: connected
-in such a way that the serial output of one IC (despite being a SIPO register, it does have a supplementary digital
+
+
+Multiple 595s can be daisy-chained: connected
+in a manner when  that the serial output of one IC (despite being a SIPO register, it does have a supplementary digital
 output) goes to the serial input of the next one and all ICs in the chain receive same clock and latch signals.
 Two daisy-chained 595s form a 16-bit shift register, which is sufficient for controlling a 12-input display.
 
 This library assumes that 
+
+* `cpbyte`
+* `gbyte`
 
 Within this approach one IC in the chain (one byte) determines which display segments are currently ON and OFF and the other byte
 (4 bits out of 8) determines which digit (character position) is currently ON and OFF. First byte is referred to
